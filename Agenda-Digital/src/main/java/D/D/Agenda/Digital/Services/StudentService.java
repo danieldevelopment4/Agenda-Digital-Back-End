@@ -11,7 +11,7 @@ import D.D.Agenda.Digital.Repository.StudentRepository;
 
 //@Component//permite usar una arquitectura singleton haciendo uso correcto de los @Autowire
 @Service
-public class StudentService implements UserDetailsService{
+public class StudentService{
 	
 /*
 	Dado que nencesitamos hacer uso del CRUD creado en la interface UserRepository crearemos una instancia de dicha interface aca, todo bien hasta
@@ -26,13 +26,8 @@ public class StudentService implements UserDetailsService{
 	@Autowired
 	StudentRepository studentRepository;
 	
-	public StudentModel newUser(StudentModel user) {
-		return studentRepository.save(user);
-	}
-
-	@Override
-	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-		StudentModel student = studentRepository.findByEmail(email);
+	public void newUser(StudentModel student) {
+		studentRepository.save(student);
 	}
 	
 //	public boolean deleteUser(Long id) {

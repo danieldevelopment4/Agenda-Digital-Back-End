@@ -28,8 +28,18 @@ public class StudentModel {
 	private String country;
 	
 	@Column(nullable = false)
-	private String passWord;
+	private String password;
+
+	private String accesToken;
 	
+	public StudentModel() {}
+	
+	public StudentModel(String email, String password) {
+		super();
+		this.email = email;
+		this.password = password;
+	}
+
 	public Long getId() {
 		return id;
 	}
@@ -86,12 +96,20 @@ public class StudentModel {
 		this.country = country;
 	}
 	
-	public String getPassWord() {
-		return passWord;
+	public String getPassword() {
+		return password;
 	}
 	
-	public void setPassWord(String passWord) {
-		this.passWord = passWord;
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getAccesToken() {
+		return accesToken;
+	}
+
+	public void setAccesToken(String accesToken) {
+		this.accesToken = accesToken;
 	}
 	
 }
