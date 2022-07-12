@@ -29,8 +29,6 @@ public class StudentModel {
 	
 	@Column(nullable = false)
 	private String password;
-
-	private String accesToken;
 	
 	public StudentModel() {}
 	
@@ -104,12 +102,4 @@ public class StudentModel {
 		this.password = password;
 	}
 
-	public String getAccesToken() {
-		return accesToken;
-	}
-
-	public void setAccesToken(String accesToken) {
-		this.accesToken = accesToken;
-	}
-	
 }

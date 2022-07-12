@@ -1,7 +1,5 @@
 package D.D.Agenda.Digital.Repository;
 
-import java.util.ArrayList;
-
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
@@ -15,6 +13,6 @@ public interface StudentRepository extends CrudRepository<StudentModel, Long>{//
 	programarlos nosotros, unicamente tendremos que hacer usos de ellos
 */
 	
-	public abstract  ArrayList<StudentModel> findByEmail(String email);
+	public abstract StudentModel findByEmail(String email);
 	
 }

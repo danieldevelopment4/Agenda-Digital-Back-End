@@ -1,10 +1,13 @@
 package D.D.Agenda.Digital.Services;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import D.D.Agenda.Digital.Models.StudentModel;
 import D.D.Agenda.Digital.Repository.StudentRepository;
@@ -26,8 +29,25 @@ public class StudentService{
 	@Autowired
 	StudentRepository studentRepository;
 	
-	public void newUser(StudentModel student) {
-		studentRepository.save(student);
+	@Autowired
+	BCryptPasswordEncoder bCryptPasswordEncoder;
+	
+	public void newStudent(StudentModel student) {
+		StudentModel studentDB = studentRepository.findByEmail(student.getEmail());
+		if(studentDB==null) {
+			student.setPassword(bCryptPasswordEncoder.encode(student.getPassword()));
+			studentRepository.save(student);
+		}else {
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "el email ingresado ");
+		}
+	}
+	
+	public boolean validateStudent(StudentModel student) {
+		return bCryptPasswordEncoder.matches(student.getPassword(), studentRepository.findByEmail(student.getEmail()).getPassword());
+//		if(studentRepository.findByEmail(student.getEmail()).getPassword().equals(student.getPassword())) {
+//			return true; 
+//		}
+//		return false;
 	}
 	
 //	public boolean deleteUser(Long id) {
