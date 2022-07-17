@@ -43,7 +43,12 @@ public class StudentService{
 	}
 	
 	public boolean validateStudent(StudentModel student) {
-		return bCryptPasswordEncoder.matches(student.getPassword(), studentRepository.findByEmail(student.getEmail()).getPassword());
+		
+		StudentModel studentDB = studentRepository.findByEmail(student.getEmail());
+		if(studentDB!=null) {
+			return bCryptPasswordEncoder.matches(student.getPassword(), studentRepository.findByEmail(student.getEmail()).getPassword());
+		}
+		return false;
 //		if(studentRepository.findByEmail(student.getEmail()).getPassword().equals(student.getPassword())) {
 //			return true; 
 //		}
