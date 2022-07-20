@@ -1,10 +1,16 @@
 package D.D.Agenda.Digital.Models;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -22,6 +28,12 @@ public class TeacherModel {
 	private String lastName;
 	private String email;
 	private String cellphone;
+	
+	//Materia
+	@OneToMany
+	@JoinTable
+	private Set<MatterModel> matter;
+
 	
 	public TeacherModel() {
 		// TODO Auto-generated constructor stub

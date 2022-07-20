@@ -1,14 +1,17 @@
 package D.D.Agenda.Digital.Models;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "estudiante")
+@Table(name = "materia")
 public class MatterModel {
 	@Id//la BD no sabe que esto es un ID y debemos de indicarselo a spring para que asi este le informe a la BD como actuar
 	@GeneratedValue(strategy = GenerationType.IDENTITY)//ID autogenerado, consecutivo automaticamente
@@ -18,7 +21,7 @@ public class MatterModel {
 	@Column(nullable = false)
 	private String name;
 	
-	@Column(nullable = false)
+	@ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private TeacherModel idTeacher;
 	
 	public MatterModel() {
