@@ -27,33 +27,41 @@ public class CalificationsModel {
 		this.date = date;
 		this.comentary = comentary;
 	}
+	
 	public CalificationsModel() {
 		super();
 	}
+
 	public Long getId() {
 		return id;
 	}
+
 	public void setId(Long id) {
 		this.id = id;
 	}
+
 	public String getCalifications() {
 		return califications;
 	}
+
 	public void setCalifications(String califications) {
 		this.califications = califications;
 	}
+
 	public Date getDate() {
 		return date;
 	}
+
 	public void setDate(Date date) {
 		this.date = date;
 	}
+
 	public String getComentary() {
 		return comentary;
 	}
+
 	public void setComentary(String comentary) {
 		this.comentary = comentary;
 	}
-	
-	
+		
 }

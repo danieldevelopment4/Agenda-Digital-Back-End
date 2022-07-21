@@ -1,21 +1,14 @@
 package D.D.Agenda.Digital.Models;
 
-import java.util.HashSet;
-import java.util.Set;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinTable;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "docente")
-
 public class TeacherModel {
 	@Id//la BD no sabe que esto es un ID y debemos de indicarselo a spring para que asi este le informe a la BD como actuar
 	@GeneratedValue(strategy = GenerationType.IDENTITY)//ID autogenerado, consecutivo automaticamente
@@ -29,14 +22,8 @@ public class TeacherModel {
 	private String email;
 	private String cellphone;
 	
-	//Materia
-	@OneToMany
-	@JoinTable
-	private Set<MatterModel> matter;
-
-	
 	public TeacherModel() {
-		// TODO Auto-generated constructor stub
+		super();
 	}
 	
 	public TeacherModel(String name, String lastName) {
