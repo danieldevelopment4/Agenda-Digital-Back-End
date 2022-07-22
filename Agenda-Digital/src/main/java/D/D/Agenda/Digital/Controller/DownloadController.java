@@ -26,6 +26,9 @@ public class DownloadController {
 		downloadService.updateDownload(download);
 	}
 	
-	
+	@PostMapping("/addCounter")
+	public void addCounter(@RequestBody DownloadModel download) {
+		downloadService.addCounter(download.getId());
+	}
 	
 }

@@ -38,7 +38,7 @@ public class StudentService{
 			student.setPassword(bCryptPasswordEncoder.encode(student.getPassword()));
 			studentRepository.save(student);
 		}else {
-			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "el email ingresado ");
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "el email ingresado ya se encuentra en uso");
 		}
 	}
 	
@@ -49,10 +49,10 @@ public class StudentService{
 			return bCryptPasswordEncoder.matches(student.getPassword(), studentRepository.findByEmail(student.getEmail()).getPassword());
 		}
 		return false;
-//		if(studentRepository.findByEmail(student.getEmail()).getPassword().equals(student.getPassword())) {
-//			return true; 
-//		}
-//		return false;
+	}
+	
+	public String getStats() {
+		return "\"noStudens\": \""+studentRepository.count()+"\",\n";
 	}
 	
 //	public boolean deleteUser(Long id) {
