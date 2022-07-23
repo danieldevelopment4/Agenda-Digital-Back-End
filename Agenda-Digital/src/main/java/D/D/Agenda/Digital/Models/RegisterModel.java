@@ -1,10 +1,13 @@
 package D.D.Agenda.Digital.Models;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -16,23 +19,23 @@ public class RegisterModel {
 	@Column(unique = true, nullable = false)
 	private Long id;
 
-	@Column(nullable = false)
+	@ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private MatterModel idMatter;
 	
-	@Column(nullable = false)
+	@ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private StudentModel idStudent;
 	
-	private String request;
+	private boolean request;
 	
-	public RegisterModel() {
-		// TODO Auto-generated constructor stub
-	}
-
-	public RegisterModel(MatterModel idMatter, StudentModel idStudent, String request) {
+	public RegisterModel(MatterModel idMatter, StudentModel idStudent, boolean request) {
 		super();
 		this.idMatter = idMatter;
 		this.idStudent = idStudent;
 		this.request = request;
+	}
+	
+	public RegisterModel() {
+		super();
 	}
 
 	public Long getId() {
@@ -59,11 +62,11 @@ public class RegisterModel {
 		this.idStudent = idStudent;
 	}
 
-	public String getRequest() {
+	public boolean isRequest() {
 		return request;
 	}
 
-	public void setRequest(String request) {
+	public void setRequest(boolean request) {
 		this.request = request;
 	}
 	

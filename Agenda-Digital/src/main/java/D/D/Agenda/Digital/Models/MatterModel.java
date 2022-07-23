@@ -21,17 +21,17 @@ public class MatterModel {
 	@Column(nullable = false)
 	private String name;
 	
-	@ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.EAGER)          
 	private TeacherModel idTeacher;
-	
-	public MatterModel() {
-		// TODO Auto-generated constructor stub
-	}
 	
 	public MatterModel(String name, TeacherModel idTeacher) {
 		super();
 		this.name = name;
 		this.idTeacher = idTeacher;
+	}
+	
+	public MatterModel() {
+		super();
 	}
 
 	public Long getId() {
@@ -57,4 +57,5 @@ public class MatterModel {
 	public void setIdTeacher(TeacherModel idTeacher) {
 		this.idTeacher = idTeacher;
 	}
+
 }

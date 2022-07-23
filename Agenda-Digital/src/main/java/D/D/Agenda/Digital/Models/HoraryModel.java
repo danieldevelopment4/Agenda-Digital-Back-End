@@ -2,6 +2,8 @@ package D.D.Agenda.Digital.Models;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -15,13 +17,15 @@ public class HoraryModel {
 	@Column(unique = true, nullable = false)
 	private Long id;
 	
-	private String day;
+	@Enumerated(EnumType.STRING)
+	private HoraryDayEnum day;
 	
-	private String hour;
+	@Enumerated(EnumType.STRING)
+	private HoraryHourEnum hour;
 	
 	private int duration;
 
-	public HoraryModel(Long id, String day, String hour, int duration) {
+	public HoraryModel(Long id, HoraryDayEnum day, HoraryHourEnum hour, int duration) {
 		super();
 		this.id = id;
 		this.day = day;
@@ -41,19 +45,19 @@ public class HoraryModel {
 		this.id = id;
 	}
 
-	public String getDay() {
+	public HoraryDayEnum getDay() {
 		return day;
 	}
 
-	public void setDay(String day) {
+	public void setDay(HoraryDayEnum day) {
 		this.day = day;
 	}
 
-	public String getHour() {
+	public HoraryHourEnum getHour() {
 		return hour;
 	}
 
-	public void setHour(String hour) {
+	public void setHour(HoraryHourEnum hour) {
 		this.hour = hour;
 	}
 
@@ -65,6 +69,4 @@ public class HoraryModel {
 		this.duration = duration;
 	}
 	
-	
-
 }

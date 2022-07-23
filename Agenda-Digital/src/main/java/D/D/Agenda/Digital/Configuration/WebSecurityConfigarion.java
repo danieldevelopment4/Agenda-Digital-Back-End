@@ -25,7 +25,7 @@ public class WebSecurityConfigarion extends WebSecurityConfigurerAdapter {
 		http.csrf().disable()
 			.addFilterAfter(new D.D.Agenda.Digital.Security.JWTAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class)
 			.authorizeRequests()
-			.antMatchers(HttpMethod.POST, "/student/loggin", "/student/register").permitAll()
+			.antMatchers(HttpMethod.POST, "/student/loggin", "/student/register", "/stats", "/download/addCounter", "/download/view").permitAll()
 			.anyRequest().authenticated();
 	}
 }
