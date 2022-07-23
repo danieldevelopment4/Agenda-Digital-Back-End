@@ -43,7 +43,7 @@ public class DownloadService {
 	public ArrayList<DownloadModel> showDownloads(){
 		return (ArrayList<DownloadModel>) downloadRepository.findAll();
 	}
-	
+
 	public String getStats() {
 		ArrayList<DownloadModel> downloads = (ArrayList<DownloadModel>) downloadRepository.findAll();
 		int total = 0;

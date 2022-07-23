@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import D.D.Agenda.Digital.Models.CalificationsModel;
 import D.D.Agenda.Digital.Models.DownloadModel;
 import D.D.Agenda.Digital.Services.DownloadService;
@@ -38,4 +37,5 @@ public class DownloadController {
 	public ArrayList<DownloadModel> showDownloads() {
 		return downloadService.showDownloads();
 	}
+
 }
