@@ -53,6 +53,7 @@ public class StudentController {
 		if (studentService.validateStudent(student)) {
 			String token = getJWTToken(student.getEmail());
 			return "{\n"
+					+ studentService.getStudentLoggin(student)
 					+ "    \"AccessToken\":\""+token+"\""
 				+ "\n}";
 		}else {

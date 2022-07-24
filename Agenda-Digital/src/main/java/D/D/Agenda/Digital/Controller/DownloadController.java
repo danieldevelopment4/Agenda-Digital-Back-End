@@ -3,11 +3,13 @@ package D.D.Agenda.Digital.Controller;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import D.D.Agenda.Digital.Models.CalificationsModel;
 import D.D.Agenda.Digital.Models.DownloadModel;
 import D.D.Agenda.Digital.Services.DownloadService;
 
@@ -29,8 +31,8 @@ public class DownloadController {
 	}
 	
 	@PostMapping("/addCounter")
-	public void addCounter(@RequestBody DownloadModel download) {
-		downloadService.addCounter(download.getId());
+	public void addCounter(@RequestParam(value="id", defaultValue="0") Long id) {
+		downloadService.addCounter(id);
 	}
 	
 	@PostMapping("/view")

@@ -1,0 +1,4 @@
+#Directorio donde se encuentra el codigo para despliegue en heroku, por motivos de evitar duplicidad, 
+#ademas de poseer un .git dentro de otro .git este directorio se suprime
+
+/back-end-agenda-digital

@@ -19,7 +19,9 @@ public class TeacherModel {
 	private String name;
 	@Column(nullable = false)
 	private String lastName;
+	@Column(unique = true)
 	private String email;
+	@Column(unique = true)
 	private String cellphone;
 	
 	public TeacherModel() {

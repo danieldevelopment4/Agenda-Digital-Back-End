@@ -11,7 +11,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 @EnableWebSecurity
 @Configuration
-public class WebSecurityConfigarion extends WebSecurityConfigurerAdapter {
+public class WebSecurityConfigarion  extends WebSecurityConfigurerAdapter {
 
 	
 	@Bean
@@ -26,6 +26,9 @@ public class WebSecurityConfigarion extends WebSecurityConfigurerAdapter {
 			.addFilterAfter(new D.D.Agenda.Digital.Security.JWTAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class)
 			.authorizeRequests()
 			.antMatchers(HttpMethod.POST, "/student/loggin", "/student/register", "/stats", "/download/addCounter", "/download/view").permitAll()
+			.and().authorizeRequests()
+			.antMatchers(HttpMethod.GET, "/hello").permitAll()
 			.anyRequest().authenticated();
 	}
+	
 }

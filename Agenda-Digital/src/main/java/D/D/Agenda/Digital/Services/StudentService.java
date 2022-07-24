@@ -55,13 +55,15 @@ public class StudentService{
 		return "\"noStudens\": \""+studentRepository.count()+"\",\n";
 	}
 	
-//	public boolean deleteUser(Long id) {
-//		try {
-//			studentRepository.deleteById(id);
-//			return true;
-//		} catch (Exception e) {
-//			return false;
-//		}
-//	}
+	public String getStudentLoggin(StudentModel student) {
+		StudentModel studentDB = studentRepository.findByEmail(student.getEmail());
+		return "    \"id\":\""+studentDB.getId()+"\","
+			+  "    \"name\":\""+studentDB.getName()+"\","
+			+  "    \"lastName\":\""+studentDB.getLastName()+"\",";
+	}
+	
+	public StudentModel getStudentMattterRegister(Long id) {
+		return studentRepository.findById(id).get();
+	}
 	
 }

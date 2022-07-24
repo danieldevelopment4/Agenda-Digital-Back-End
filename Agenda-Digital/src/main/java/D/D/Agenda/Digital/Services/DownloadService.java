@@ -1,6 +1,8 @@
 package D.D.Agenda.Digital.Services;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -41,7 +43,9 @@ public class DownloadService {
 	}
 	
 	public ArrayList<DownloadModel> showDownloads(){
-		return (ArrayList<DownloadModel>) downloadRepository.findAll();
+		ArrayList<DownloadModel> list = (ArrayList<DownloadModel>) downloadRepository.findAll();
+		list.sort((o1, o2) -> o1.getId().compareTo(o2.getId()));
+		return list; 
 	}
 
 	public String getStats() {
