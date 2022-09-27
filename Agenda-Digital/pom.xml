@@ -34,12 +34,6 @@
 			<!-- Permite hacer uso de los componentes de seguridad con el fin de encriptar y validar credenciales -->
 		</dependency>
 		<dependency>
-			<groupId>io.jsonwebtoken</groupId>
-			<artifactId>jjwt</artifactId>
-			<version>0.9.0</version>
-			<!-- Permite la generacion y validacion de los JWT -->
-		</dependency>
-		<dependency>
 			<groupId>org.json</groupId>
 			<artifactId>json</artifactId>
 			<version>20160810</version>
