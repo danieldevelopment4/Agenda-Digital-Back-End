@@ -22,12 +22,16 @@ public class MatterModel {
 	private String name;
 	
 	@ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.EAGER)          
-	private TeacherModel idTeacher;
+	private TeacherModel teacher;
 	
-	public MatterModel(String name, TeacherModel idTeacher) {
+	@ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	private StudentModel student;
+	
+	public MatterModel(String name, TeacherModel teacher , StudentModel student) {
 		super();
 		this.name = name;
-		this.idTeacher = idTeacher;
+		this.teacher = teacher;
+		this.student = student;
 	}
 	
 	public MatterModel() {
@@ -50,12 +54,20 @@ public class MatterModel {
 		this.name = name;
 	}
 
-	public TeacherModel getIdTeacher() {
-		return idTeacher;
+	public TeacherModel getTeacher() {
+		return teacher;
 	}
 
-	public void setIdTeacher(TeacherModel idTeacher) {
-		this.idTeacher = idTeacher;
+	public void setTeacher(TeacherModel teacher) {
+		this.teacher = teacher;
+	}
+
+	public StudentModel getStudent() {
+		return student;
+	}
+
+	public void setStudent(StudentModel student) {
+		this.student = student;
 	}
 
 }

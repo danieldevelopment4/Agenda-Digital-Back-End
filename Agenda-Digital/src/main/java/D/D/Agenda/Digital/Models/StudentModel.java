@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.CreationTimestamp;
+
 @Entity
 @Table(name = "estudiante")
 public class StudentModel {
@@ -24,6 +26,7 @@ public class StudentModel {
 	@Column(nullable = false)
 	private String email;
 	private long cellPhone;
+	@CreationTimestamp
 	private Date birthDay;
 	private String country;
 	

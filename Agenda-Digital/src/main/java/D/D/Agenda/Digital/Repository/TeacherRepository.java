@@ -13,4 +13,7 @@ public interface TeacherRepository extends CrudRepository<TeacherModel, Long>{//
 	programarlos nosotros, unicamente tendremos que hacer usos de ellos
 */
 
+//	@Query(value = "select * from docente WHERE cellphone=cellphone or email=email", nativeQuery = true)
+//	public Iterable<TeacherModel> findExisitingTeacher(@Param("cellphone")String cellphone, @Param("email")String email);
+	
 }

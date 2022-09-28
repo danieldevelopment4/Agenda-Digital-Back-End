@@ -19,8 +19,8 @@ public class CalificationService {
 	StudentRepository studentRepository;
 
 	public void newCalification(CalificationsModel calification) {
-		StudentModel strudentDb = studentRepository.findById(calification.getIdStudent().getId()).get();
-		calification.setIdStudent(strudentDb);
+		StudentModel strudentDb = studentRepository.findById(calification.getStudent().getId()).get();
+		calification.setStudent(strudentDb);
 		calificationsRepository.save(calification);
 	}
 	

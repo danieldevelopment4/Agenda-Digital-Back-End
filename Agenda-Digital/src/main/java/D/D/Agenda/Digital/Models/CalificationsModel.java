@@ -29,15 +29,15 @@ public class CalificationsModel {
 	private String comentary;
 	
 	@ManyToOne(optional = false, cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
-	private StudentModel idStudent;
+	private StudentModel student;
 	
-	public CalificationsModel(Long id, float calification, Date date, String comentary, StudentModel idStudent) {
+	public CalificationsModel(Long id, float calification, Date date, String comentary, StudentModel student) {
 		super();
 		this.id = id;
 		this.calification = calification;
 		this.date = date;
 		this.comentary = comentary;
-		this.idStudent = idStudent;
+		this.student = student;
 	}
 
 	public CalificationsModel() {
@@ -76,12 +76,12 @@ public class CalificationsModel {
 		this.comentary = comentary;
 	}
 
-	public StudentModel getIdStudent() {
-		return idStudent;
+	public StudentModel getStudent() {
+		return student;
 	}
 
-	public void setIdStudent(StudentModel idStudent) {
-		this.idStudent = idStudent;
+	public void setStudent(StudentModel student) {
+		this.student = student;
 	}
 		
 }

@@ -9,6 +9,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @Configuration
 public class WebSecurityConfigarion  extends WebSecurityConfigurerAdapter {
 
+	
+	//Permite el uso del BCrypt de springSecurity sin la necesitdad de establecer JWT
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable();

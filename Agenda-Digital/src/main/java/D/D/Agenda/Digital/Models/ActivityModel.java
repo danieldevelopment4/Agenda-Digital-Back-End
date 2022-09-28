@@ -1,5 +1,7 @@
 package D.D.Agenda.Digital.Models;
 
+import java.util.Date;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,6 +11,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.CreationTimestamp;
 
 @Entity
 @Table(name = "actividades")
@@ -24,20 +28,22 @@ public class ActivityModel {
 	private double percent;
 	
 	@ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	private MatterModel idMatter;
+	private MatterModel matter;
 	
 	private String noDaysRecordatories;
-	private String cuts;
+	@CreationTimestamp
+	private Date submissionDate;
+	private String term;
 	
 	public ActivityModel(Long id, String name, String description, double percent, String noDaysRecordatories,
-			String cuts) {
+			String term) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.description = description;
 		this.percent = percent;
 		this.noDaysRecordatories = noDaysRecordatories;
-		this.cuts = cuts;
+		this.term = term;
 	}
 	
 	public ActivityModel() {
@@ -76,12 +82,12 @@ public class ActivityModel {
 		this.percent = percent;
 	}
 	
-	public MatterModel getIdMatter() {
-		return idMatter;
+	public MatterModel getMatter() {
+		return matter;
 	}
 	
-	public void setIdMatter(MatterModel idMatter) {
-		this.idMatter = idMatter;
+	public void setMatter(MatterModel matter) {
+		this.matter = matter;
 	}
 	
 	public String getNoDaysRecordatories() {
@@ -92,12 +98,20 @@ public class ActivityModel {
 		this.noDaysRecordatories = noDaysRecordatories;
 	}
 	
-	public String getCuts() {
-		return cuts;
+	public Date getSubmissionDate() {
+		return submissionDate;
+	}
+
+	public void setSubmissionDate(Date submissionDate) {
+		this.submissionDate = submissionDate;
+	}
+
+	public String getTerm() {
+		return term;
 	}
 	
-	public void setCuts(String cuts) {
-		this.cuts = cuts;
+	public void setTerm(String term) {
+		this.term = term;
 	}
 		
 }

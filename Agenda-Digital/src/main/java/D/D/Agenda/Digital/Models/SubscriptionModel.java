@@ -12,7 +12,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "Registro")
-public class RegisterModel {
+public class SubscriptionModel {
 	
 	@Id//la BD no sabe que esto es un ID y debemos de indicarselo a spring para que asi este le informe a la BD como actuar
 	@GeneratedValue(strategy = GenerationType.IDENTITY)//ID autogenerado, consecutivo automaticamente
@@ -20,21 +20,20 @@ public class RegisterModel {
 	private Long id;
 
 	@ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	private MatterModel idMatter;
+	private MatterModel matter;
 	
 	@ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	private StudentModel idStudent;
+	private StudentModel student;
 	
-	private boolean request;
+	private boolean request=true;
 	
-	public RegisterModel(MatterModel idMatter, StudentModel idStudent, boolean request) {
+	public SubscriptionModel(MatterModel matter, StudentModel student) {
 		super();
-		this.idMatter = idMatter;
-		this.idStudent = idStudent;
-		this.request = request;
+		this.matter = matter;
+		this.student = student;
 	}
 	
-	public RegisterModel() {
+	public SubscriptionModel() {
 		super();
 	}
 
@@ -46,20 +45,20 @@ public class RegisterModel {
 		this.id = id;
 	}
 
-	public MatterModel getIdMatter() {
-		return idMatter;
+	public MatterModel getMatter() {
+		return matter;
 	}
 
-	public void setIdMatter(MatterModel idMatter) {
-		this.idMatter = idMatter;
+	public void setMatter(MatterModel matter) {
+		this.matter = matter;
 	}
 
-	public StudentModel getIdStudent() {
-		return idStudent;
+	public StudentModel getStudent() {
+		return student;
 	}
 
-	public void setIdStudent(StudentModel idStudent) {
-		this.idStudent = idStudent;
+	public void setStudent(StudentModel student) {
+		this.student = student;
 	}
 
 	public boolean isRequest() {

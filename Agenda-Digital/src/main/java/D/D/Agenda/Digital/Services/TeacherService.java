@@ -18,7 +18,10 @@ public class TeacherService {
 	
 	public void update(TeacherModel teacher) {
 		TeacherModel teacherDB = teacherRepository.findById(teacher.getId()).get();
-		
+		teacherDB.setName(teacher.getName());
+		teacherDB.setLastName(teacher.getLastName());
+		teacherDB.setEmail(teacher.getEmail());
+		teacherDB.setCellphone(teacher.getCellphone());
 		teacherRepository.save(teacherDB);
 	}
 	

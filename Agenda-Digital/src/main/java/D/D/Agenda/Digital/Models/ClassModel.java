@@ -19,16 +19,16 @@ public class ClassModel {
 	private Long id;
 	
 	@ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	private MatterModel idMatter;
+	private MatterModel matter;
 	
 	@ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	private HoraryModel idHorary;
+	private HoraryModel horary;
 
-	public ClassModel(Long id, MatterModel idMatter, HoraryModel idHorary) {
+	public ClassModel(Long id, MatterModel matter, HoraryModel horary) {
 		super();
 		this.id = id;
-		this.idMatter = idMatter;
-		this.idHorary = idHorary;
+		this.matter = matter;
+		this.horary = horary;
 	}
 
 	public ClassModel() {
@@ -43,20 +43,20 @@ public class ClassModel {
 		this.id = id;
 	}
 
-	public MatterModel getIdMatter() {
-		return idMatter;
+	public MatterModel getMatter() {
+		return matter;
 	}
 
-	public void setIdMatter(MatterModel idMatter) {
-		this.idMatter = idMatter;
+	public void setMatter(MatterModel matter) {
+		this.matter = matter;
 	}
 
-	public HoraryModel getIdHorary() {
-		return idHorary;
+	public HoraryModel getHorary() {
+		return horary;
 	}
 
-	public void setIdHorary(HoraryModel idHorary) {
-		this.idHorary = idHorary;
+	public void setHorary(HoraryModel horary) {
+		this.horary = horary;
 	}
 	
 }
