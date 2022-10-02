@@ -37,7 +37,6 @@ public class StudentController {
 	
 	@PostMapping(value="/loggin", produces = MediaType.APPLICATION_JSON_VALUE)
 	public String login(@RequestBody StudentModel student) {
-		System.out.println("F");
 		if (studentService.validateStudent(student)) {
 			return "{\n"
 					+ studentService.getStudentLoggin(student)
