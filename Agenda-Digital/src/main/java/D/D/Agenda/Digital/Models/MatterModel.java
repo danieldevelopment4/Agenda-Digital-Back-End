@@ -21,7 +21,7 @@ public class MatterModel {
 	@Column(nullable = false)
 	private String name;
 	
-	@ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.EAGER)          
+	@ManyToOne(optional = true, cascade = CascadeType.ALL, fetch = FetchType.EAGER)          
 	private TeacherModel teacher;
 	
 	@ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.EAGER)

@@ -49,5 +49,14 @@ public class MatterService {
 	public MatterModel getMatter(Long id) {
 		return matterRepository.findById(id).get();
 	}
+	
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		new StringUtils 
+		
+		
+		return builder.toString();
+	}
 
 }

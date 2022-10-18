@@ -1,7 +1,9 @@
 package D.D.Agenda.Digital.Services;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import D.D.Agenda.Digital.Models.TeacherModel;
 import D.D.Agenda.Digital.Repository.TeacherRepository;
@@ -13,7 +15,11 @@ public class TeacherService {
 	TeacherRepository teacherRepository; 
 	
 	public void create(TeacherModel teacher) {
-		teacherRepository.save(teacher);
+		if(teacherRepository.findByCellphone(teacher.getCellphone())==null) {
+			teacherRepository.save(teacher);
+		}else {
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Docente ya registrado con dicho celular");
+		}
 	}
 	
 	public void update(TeacherModel teacher) {

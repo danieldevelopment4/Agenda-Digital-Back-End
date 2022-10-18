@@ -56,7 +56,7 @@ public class StudentService{
 		StudentModel studentDB = studentRepository.findByEmail(student.getEmail());
 		return "    \"id\":\""+studentDB.getId()+"\","
 			+  "    \"name\":\""+studentDB.getName()+"\","
-			+  "    \"lastName\":\""+studentDB.getLastName()+"\",";
+			+  "    \"lastName\":\""+studentDB.getLastName()+"\"";
 	}
 	
 	public StudentModel getStudentMattterRegister(Long id) {
