@@ -124,7 +124,7 @@ public class ActivityModel {
 		data += "\t\t\t\t\t\"noDaysRecordatories\":"+noDaysRecordatories+",\n";
 		data += "\t\t\t\t\t\"submissionDate\":"+submissionDate+",\n";
 		data += "\t\t\t\t\t\"term\":"+term+",\n";
-		data += "\t\t\t\t\t\"submit\":"+submit+"\n";
+		data += "\t\t\t\t\t\"submit\":"+((submit!=null)?submit.toString():null)+"\n";
 		data += "\t\t\t\t}";
 		return data;
 	}
