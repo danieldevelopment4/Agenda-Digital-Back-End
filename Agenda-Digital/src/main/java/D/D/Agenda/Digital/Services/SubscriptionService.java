@@ -24,10 +24,6 @@ public class SubscriptionService {
 	@Autowired
 	StudentRepository studentRepository;
 	@Autowired
-	TeacherRepository teacherRepository;
-	@Autowired
-	MatterRepository matterRepository;
-	@Autowired
 	ActivityRepository activityRepository;
 	
 	public SubscriptionModel subscribe(SubscriptionModel subscription) {
@@ -59,11 +55,11 @@ public class SubscriptionService {
 		TeacherModel teacherDB;
 		for (int i = 0; i < subscriptionList.size(); i++) {
 			subscriptionDB = subscriptionList.get(i); 
-			matterDB = matterRepository.findById(subscriptionDB.getMatter().getId()).get();
+			matterDB = subscriptionDB.getMatter();
 			admin = subscription.getStudent().getId()==matterDB.getStudent().getId();
 			activitiesList = activityRepository.findAllByMatter(matterDB);
-			teacherDB = teacherRepository.findById(matterDB.getTeacher().getId()).get();
-			data+= subscriptionDB.toString(matterDB.toString(teacherDB,activitiesList, admin));
+			teacherDB = matterDB.getTeacher();
+			data+= subscriptionDB.toString(matterDB.toString(subscriptionDB.isRequest(), teacherDB,activitiesList, admin));
 			data+=((i<subscriptionList.size()-1)?",\n":"\n");
 		}
 		data+="]";

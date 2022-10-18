@@ -74,15 +74,20 @@ public class MatterModel {
 		this.student = student;
 	}
 	
-	public String toString(TeacherModel teacher, ArrayList<ActivityModel> activitiesList, boolean admin) {
+	public String toString(boolean request, TeacherModel teacher, ArrayList<ActivityModel> activitiesList, boolean admin) {
 		String data = "{\n";
 		data += "\t\t\t\"id\":"+id+",\n";
 		data += "\t\t\t\"name\":"+name+",\n";
-		data += "\t\t\t\"teacher\":"+teacher.toString()+",\n";
-		data += "\t\t\t\"activities\":[";
-		
-		data += "\t\t\t],\n";
-		data += "\t\t\t\"admin\":"+admin+"\n";
+		if(!request) {
+			data += "\t\t\t\"teacher\":"+((teacher!=null)?teacher.toString():null)+",\n";
+			data += "\t\t\t\"activities\":[\n";
+			for (int i = 0; i < activitiesList.size(); i++) {
+				data += activitiesList.get(i).toString();
+				data += ((i<activitiesList.size()-1)?",\n":"\n");
+			}
+			data += "\t\t\t],\n";
+			data += "\t\t\t\"admin\":"+admin+"\n";
+		}
 		data += "\t\t}";
 		return data;
 	}

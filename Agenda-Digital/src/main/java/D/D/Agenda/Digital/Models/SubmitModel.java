@@ -80,5 +80,16 @@ public class SubmitModel {
 	public void setSubscription(SubscriptionModel subscription) {
 		this.subscription = subscription;
 	}
+	
+	@Override
+	public String toString() {
+		String data = "{";
+		data += "\t\t\t\t\t";
+		data += "\t\t\t\t\t\t\"id\":"+id+"\n";
+		data += "\t\t\t\t\t\t\"note\":"+note+",\n";
+		data += "\t\t\t\t\t\t\"state\":"+state+"\n";
+		data += "\t\t\t\t\t}";
+		return data;
+	}
 
 }

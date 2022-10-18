@@ -113,5 +113,20 @@ public class ActivityModel {
 	public void setTerm(String term) {
 		this.term = term;
 	}
+	
+	public String toString(SubmitModel submit) {
+		String data = "";
+		data += "\t\t\t\t{\n";
+		data += "\t\t\t\t\t\"id\":"+id+",\n";
+		data += "\t\t\t\t\t\"name\":"+name+",\n";
+		data += "\t\t\t\t\t\"description\":"+description+",\n";
+		data += "\t\t\t\t\t\"percent\":"+percent+",\n";
+		data += "\t\t\t\t\t\"noDaysRecordatories\":"+noDaysRecordatories+",\n";
+		data += "\t\t\t\t\t\"submissionDate\":"+submissionDate+",\n";
+		data += "\t\t\t\t\t\"term\":"+term+",\n";
+		data += "\t\t\t\t\t\"submit\":"+submit+"\n";
+		data += "\t\t\t\t}";
+		return data;
+	}
 		
 }
