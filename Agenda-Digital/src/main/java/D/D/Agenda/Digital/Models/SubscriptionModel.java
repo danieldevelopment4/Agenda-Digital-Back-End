@@ -69,4 +69,14 @@ public class SubscriptionModel {
 		this.request = request;
 	}
 	
+	public String toString(String matter) {
+		String data = "";
+		data += "\t{";
+		data += "\t\t\"id\":"+this.id+",\n";
+		data += "\t\t\"matter:\""+matter+",\n";
+		data += "\t\t\"request\":"+request+"\n";
+		data += "\t}";
+		return data;
+	}
+	
 }

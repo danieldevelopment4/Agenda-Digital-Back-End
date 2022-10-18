@@ -1,5 +1,7 @@
 package D.D.Agenda.Digital.Models;
 
+import java.util.ArrayList;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,6 +11,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import org.springframework.boot.autoconfigure.kafka.KafkaProperties.Admin;
 
 @Entity
 @Table(name = "materia")
@@ -68,6 +72,19 @@ public class MatterModel {
 
 	public void setStudent(StudentModel student) {
 		this.student = student;
+	}
+	
+	public String toString(TeacherModel teacher, ArrayList<ActivityModel> activitiesList, boolean admin) {
+		String data = "{\n";
+		data += "\t\t\t\"id\":"+id+",\n";
+		data += "\t\t\t\"name\":"+name+",\n";
+		data += "\t\t\t\"teacher\":"+teacher.toString()+",\n";
+		data += "\t\t\t\"activities\":[";
+		
+		data += "\t\t\t],\n";
+		data += "\t\t\t\"admin\":"+admin+"\n";
+		data += "\t\t}";
+		return data;
 	}
 
 }

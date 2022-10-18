@@ -3,6 +3,7 @@ package D.D.Agenda.Digital.Controller;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -45,8 +46,8 @@ public class SubscriptionController {
 		subscriptionService.deniedSubscription(subscription);
 	}
 	
-	@PostMapping("/show")
-	public ArrayList<SubscriptionModel> showSubscriptions(@RequestBody SubscriptionModel subscription){
+	@PostMapping(value="/show", produces = MediaType.APPLICATION_JSON_VALUE)
+	public String showSubscriptions(@RequestBody SubscriptionModel subscription){
 		return subscriptionService.show(subscription);
 	}
 }

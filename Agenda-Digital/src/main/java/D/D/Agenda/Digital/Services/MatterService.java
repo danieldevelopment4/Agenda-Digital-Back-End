@@ -50,13 +50,4 @@ public class MatterService {
 		return matterRepository.findById(id).get();
 	}
 	
-	@Override
-	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		new StringUtils 
-		
-		
-		return builder.toString();
-	}
-
 }
