@@ -106,5 +106,15 @@ public class StudentModel {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	
+	@Override
+	public String toString() {
+		String data = "";
+		data += "\t\t\t\t{\n";
+		data += "\t\t\t\t\t\"name\":"+name+",\n";
+		data += "\t\t\t\t\t\"lastName\":"+lastName+"\n";
+		data += "\t\t\t\t}";
+		return data;
+	}
 
 }

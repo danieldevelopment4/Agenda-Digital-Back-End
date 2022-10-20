@@ -3,7 +3,9 @@ package D.D.Agenda.Digital.Services;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import D.D.Agenda.Digital.Models.ActivityModel;
 import D.D.Agenda.Digital.Models.MatterModel;
@@ -30,8 +32,15 @@ public class SubscriptionService {
 	@Autowired
 	SubmitRepository submitRepository;
 	
+	
+	
 	public SubscriptionModel subscribe(SubscriptionModel subscription) {
-		return subscriptionRepository.save(subscription);
+		SubscriptionModel subscriptionDB = subscriptionRepository.findSubscriptionByMatterAndStudent(subscription.getMatter(), subscription.getStudent());
+		if(subscriptionDB==null) {
+			return subscriptionRepository.save(subscription);
+		}else {
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Ya te encuentras subscrito a esta materia");
+		}
 	}
 	
 	public void aprobeSubscription(SubscriptionModel subscription) {
@@ -55,17 +64,20 @@ public class SubscriptionService {
 		ArrayList<SubscriptionModel> subscriptionList = subscriptionRepository.findAllByStudent(studentDB);
 		MatterModel matterDB;
 		boolean admin;
+		ArrayList<SubscriptionModel> studentsList;
 		ArrayList<ActivityModel> activitiesList;
 		TeacherModel teacherDB;
 		ArrayList<SubmitModel> submitList;
+		
 		for (int i = 0; i < subscriptionList.size(); i++) {
 			subscriptionDB = subscriptionList.get(i); 
 			matterDB = subscriptionDB.getMatter();
 			admin = subscription.getStudent().getId()==matterDB.getStudent().getId();
+			studentsList = subscriptionRepository.findAllByMatter(matterDB);
 			activitiesList = activityRepository.findAllByMatter(matterDB);
 			submitList = submitRepository.findAllSubmitBySubscription(subscriptionDB);
 			teacherDB = matterDB.getTeacher();
-			data+= subscriptionDB.toString(matterDB.toString(subscriptionDB.isRequest(), teacherDB, activitiesList, submitList, admin));
+			data+= subscriptionDB.toString(matterDB.toString(subscriptionDB.isRequest(), teacherDB, activitiesList, submitList, admin, studentsList));
 			data+=((i<subscriptionList.size()-1)?",\n":"\n");
 		}
 		data+="]";

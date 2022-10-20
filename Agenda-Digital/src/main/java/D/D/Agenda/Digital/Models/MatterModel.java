@@ -74,11 +74,12 @@ public class MatterModel {
 		this.student = student;
 	}
 	
-	public String toString(boolean request, TeacherModel teacher, ArrayList<ActivityModel> activitiesList, ArrayList<SubmitModel> submitList, boolean admin) {
+	public String toString(boolean request, TeacherModel teacher, ArrayList<ActivityModel> activitiesList, ArrayList<SubmitModel> submitList, boolean admin, ArrayList<SubscriptionModel> studentList) {
 		String data = "{\n";
 		data += "\t\t\t\"id\":"+id+",\n";
 		data += "\t\t\t\"name\":"+name+",\n";
 		if(!request) {
+			data += "\t\t\t\"studentsCount\":"+studentList.size()+",\n";
 			data += "\t\t\t\"teacher\":"+((teacher!=null)?teacher.toString():null)+",\n";
 			data += "\t\t\t\"activities\":[\n";
 			int aux = -1;
@@ -93,7 +94,17 @@ public class MatterModel {
 				data += ((i<activitiesList.size()-1)?",\n":"\n");
 			}
 			data += "\t\t\t],\n";
-			data += "\t\t\t\"admin\":"+admin+"\n";
+			data += "\t\t\t\"admin\":"+admin+",\n";
+			if(admin) {
+				data += "\t\t\t\"studentList\":[\n";
+				for (int i = 0; i < studentList.size(); i++) {
+					data+=studentList.get(i).getStudent().toString();
+					data+=((i<studentList.size()-1)?",\n":"\n");
+				}
+				data += "\t\t\t]\n";
+			}else {
+				data += "\t\t\t\"studentList\":[ ]\n";
+			}
 		}
 		data += "\t\t}";
 		return data;
