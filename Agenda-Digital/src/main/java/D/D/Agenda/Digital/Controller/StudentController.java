@@ -30,9 +30,12 @@ public class StudentController {
 	 * gracias a esto el framework sabra que hacer con estos datos y a donde deben de ser direccionados
 	 */
 	
-	@PostMapping("/register")
-	public void register(@RequestBody StudentModel student) {
+	@PostMapping(value="/register", produces = MediaType.APPLICATION_JSON_VALUE)
+	public String register(@RequestBody StudentModel student) {
 		studentService.newStudent(student);
+		return "{\n"
+				+ studentService.getStudentLoggin(student)
+			+ "\n}";
 	}
 	
 	@PostMapping(value="/loggin", produces = MediaType.APPLICATION_JSON_VALUE)
