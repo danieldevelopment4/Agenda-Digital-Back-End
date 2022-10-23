@@ -71,7 +71,7 @@ public class SubscriptionModel {
 	
 	public String toString(String matter) {
 		String data = "";
-		data += "\t{";
+		data += "\t{\n";
 		data += "\t\t\"id\":"+this.id+",\n";
 		data += "\t\t\"matter\":"+matter+",\n";
 		data += "\t\t\"request\":"+request+"\n";

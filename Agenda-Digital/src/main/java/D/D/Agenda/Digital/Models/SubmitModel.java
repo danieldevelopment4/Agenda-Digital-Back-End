@@ -83,8 +83,7 @@ public class SubmitModel {
 	
 	@Override
 	public String toString() {
-		String data = "{";
-		data += "\t\t\t\t\t";
+		String data = "{\n";
 		data += "\t\t\t\t\t\t\"id\":"+id+"\n";
 		data += "\t\t\t\t\t\t\"note\":"+note+",\n";
 		data += "\t\t\t\t\t\t\"state\":"+state.name()+"\n";

@@ -75,11 +75,11 @@ public class TeacherModel {
 	}
 	
 	public String toString() {
-		String data = "{";
+		String data = "{\n";
 		data += "\t\t\t\t\"id\":"+id+",\n";
-		data += "\t\t\t\t\"name\":"+name+",\n";
-		data += "\t\t\t\t\"lastName\":"+lastName+",\n";
-		data += "\t\t\t\t\"email\":"+email+",\n";
+		data += "\t\t\t\t\"name\":\""+name+"\",\n";
+		data += "\t\t\t\t\"lastName\":\""+lastName+"\",\n";
+		data += "\t\t\t\t\"email\":\""+email+"\",\n";
 		data += "\t\t\t\t\"cellphone\":"+cellphone+"\n";
 		data += "\t\t\t}";
 		return data;
