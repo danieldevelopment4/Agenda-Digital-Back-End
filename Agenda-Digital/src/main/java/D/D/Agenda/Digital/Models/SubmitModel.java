@@ -20,7 +20,7 @@ public class SubmitModel {
 	@Column(unique = true, nullable = false)
 	private Long id;
 	
-	private String note;
+	private Double note;
 	
 	@Enumerated(EnumType.STRING)
 	private SubmitStateEnum state; 
@@ -30,7 +30,7 @@ public class SubmitModel {
 	@ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private SubscriptionModel subscription ;
 
-	public SubmitModel(Long id, String note, SubmitStateEnum state ) {
+	public SubmitModel(Long id, Double note, SubmitStateEnum state ) {
 		super();
 		this.id = id;
 		this.note = note;
@@ -49,11 +49,11 @@ public class SubmitModel {
 		this.id = id;
 	}
 
-	public String getNote() {
+	public Double getNote() {
 		return note;
 	}
 
-	public void setNote(String note) {
+	public void setNote(Double note) {
 		this.note = note;
 	}
 
@@ -84,9 +84,9 @@ public class SubmitModel {
 	@Override
 	public String toString() {
 		String data = "{\n";
-		data += "\t\t\t\t\t\t\"id\":"+id+"\n";
+		data += "\t\t\t\t\t\t\"id\":"+id+",\n";
 		data += "\t\t\t\t\t\t\"note\":"+note+",\n";
-		data += "\t\t\t\t\t\t\"state\":"+state.name()+"\n";
+		data += "\t\t\t\t\t\t\"state\":\""+state.name()+"\"\n";
 		data += "\t\t\t\t\t}";
 		return data;
 	}
