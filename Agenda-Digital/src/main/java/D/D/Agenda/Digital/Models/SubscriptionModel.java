@@ -73,7 +73,7 @@ public class SubscriptionModel {
 		String data = "";
 		data += "\t{";
 		data += "\t\t\"id\":"+this.id+",\n";
-		data += "\t\t\"matter:\""+matter+",\n";
+		data += "\t\t\"matter\":"+matter+",\n";
 		data += "\t\t\"request\":"+request+"\n";
 		data += "\t}";
 		return data;
