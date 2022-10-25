@@ -32,7 +32,16 @@ public class SubscriptionService {
 	@Autowired
 	SubmitRepository submitRepository;
 	
-	
+	public boolean validateSubscriptionByMatterName(MatterModel matter) {
+		StudentModel studentDB = studentRepository.findById(matter.getStudent().getId()).get();
+		ArrayList<SubscriptionModel> subscriptionList = subscriptionRepository.findAllByStudent(studentDB);
+		for (int i = 0; i < subscriptionList.size(); i++) {
+			if(subscriptionList.get(i).getMatter().getName().equals(matter.getName())) {
+				return true;
+			}
+		}
+		return false;
+	}
 	
 	public SubscriptionModel subscribe(SubscriptionModel subscription) {
 		SubscriptionModel subscriptionDB = subscriptionRepository.findSubscriptionByMatterAndStudent(subscription.getMatter(), subscription.getStudent());

@@ -25,7 +25,7 @@ public class ActivityModel {
 	
 	private String name;
 	private String description;
-	private double percent;
+	private int percent;
 	
 	@ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private MatterModel matter;
@@ -35,7 +35,7 @@ public class ActivityModel {
 	private Date submissionDate;
 	private String term;
 	
-	public ActivityModel(Long id, String name, String description, double percent, String noDaysRecordatories,
+	public ActivityModel(Long id, String name, String description, int percent, String noDaysRecordatories,
 			String term) {
 		super();
 		this.id = id;
@@ -74,11 +74,11 @@ public class ActivityModel {
 		this.description = description;
 	}
 	
-	public double getPercent() {
+	public int getPercent() {
 		return percent;
 	}
 	
-	public void setPercent(double percent) {
+	public void setPercent(int percent) {
 		this.percent = percent;
 	}
 	

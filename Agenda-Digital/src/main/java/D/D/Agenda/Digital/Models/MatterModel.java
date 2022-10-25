@@ -77,8 +77,9 @@ public class MatterModel {
 	public String toString(boolean request, TeacherModel teacher, ArrayList<ActivityModel> activitiesList, ArrayList<SubmitModel> submitList, boolean admin, ArrayList<SubscriptionModel> studentList) {
 		String data = "{\n";
 		data += "\t\t\t\"id\":"+id+",\n";
-		data += "\t\t\t\"name\":\""+name+"\",\n";
+		data += "\t\t\t\"name\":\""+name+"\"";
 		if(!request) {
+			data += ",\n";
 			data += "\t\t\t\"studentsCount\":"+studentList.size()+",\n";
 			data += "\t\t\t\"teacher\":"+((teacher!=null)?teacher.toString():null)+",\n";
 			data += "\t\t\t\"activities\":[\n";

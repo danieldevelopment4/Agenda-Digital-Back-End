@@ -21,8 +21,10 @@ public class MatterService {
 	StudentRepository studentRepository;
 	
 	public MatterModel create(MatterModel matter) {
-		TeacherModel teacherDB = teacherRepository.findById(matter.getTeacher().getId()).get();
-		matter.setTeacher(teacherDB);
+		if(matter.getTeacher()!=null) {
+			TeacherModel teacherDB = teacherRepository.findById(matter.getTeacher().getId()).get();
+			matter.setTeacher(teacherDB);
+		}
 		StudentModel studentDB = studentRepository.findById(matter.getStudent().getId()).get();
 		matter.setStudent(studentDB);
 		return matterRepository.save(matter);
