@@ -31,8 +31,8 @@ public class DownloadController {
 	}
 	
 	@PostMapping("/addCounter")
-	public void addCounter(@RequestParam(value="id", defaultValue="0") Long id) {
-		downloadService.addCounter(id);
+	public void addCounter(@RequestBody DownloadModel download) {
+		downloadService.addCounter(download.getId());
 	}
 	
 	@PostMapping("/view")
