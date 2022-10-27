@@ -53,13 +53,13 @@ public class SubscriptionService {
 	}
 	
 	public void aprobeSubscription(SubscriptionModel subscription) {
-		SubscriptionModel subscriptionDB = subscriptionRepository.findById(subscription.getId()).get();
+		SubscriptionModel subscriptionDB = subscriptionRepository.findSubscriptionByMatterAndStudent(subscription.getMatter(), subscription.getStudent());
 		subscriptionDB.setRequest(false);
 		subscriptionRepository.save(subscriptionDB);
 	}
 	
 	public void deniedSubscription(SubscriptionModel subscription) {
-		SubscriptionModel subscriptionDB = subscriptionRepository.findById(subscription.getId()).get();
+		SubscriptionModel subscriptionDB = subscriptionRepository.findSubscriptionByMatterAndStudent(subscription.getMatter(), subscription.getStudent());
 		subscriptionDB.setMatter(null);
 		subscriptionDB.setStudent(null);
 		
@@ -74,6 +74,8 @@ public class SubscriptionService {
 		MatterModel matterDB;
 		boolean admin;
 		ArrayList<SubscriptionModel> studentsList;
+		ArrayList<StudentModel> aprobedStudentsList;
+		ArrayList<StudentModel> waitingStudentsList;
 		ArrayList<ActivityModel> activitiesList;
 		TeacherModel teacherDB;
 		ArrayList<SubmitModel> submitList;
@@ -83,10 +85,19 @@ public class SubscriptionService {
 			matterDB = subscriptionDB.getMatter();
 			admin = subscription.getStudent().getId()==matterDB.getStudent().getId();
 			studentsList = subscriptionRepository.findAllByMatter(matterDB);
+			aprobedStudentsList= new ArrayList<>();
+			waitingStudentsList= new ArrayList<>();
+			for (int j= 0;  j< studentsList.size(); j++) {
+				if(!studentsList.get(j).isRequest()) {//aprobado
+					aprobedStudentsList.add(studentsList.get(j).getStudent());
+				}else {//en espera
+					waitingStudentsList.add(studentsList.get(j).getStudent());
+				}
+			}
 			activitiesList = activityRepository.findAllByMatter(matterDB);
 			submitList = submitRepository.findAllSubmitBySubscription(subscriptionDB);
 			teacherDB = matterDB.getTeacher();
-			data+= subscriptionDB.toString(matterDB.toString(subscriptionDB.isRequest(), teacherDB, activitiesList, submitList, admin, studentsList));
+			data+= subscriptionDB.toString(matterDB.toString(subscriptionDB.isRequest(), teacherDB, activitiesList, submitList, admin, aprobedStudentsList, waitingStudentsList));
 			data+=((i<subscriptionList.size()-1)?",\n":"\n");
 		}
 		data+="]";

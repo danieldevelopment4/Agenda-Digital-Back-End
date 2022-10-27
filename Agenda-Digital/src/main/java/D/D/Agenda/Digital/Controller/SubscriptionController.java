@@ -1,7 +1,5 @@
 package D.D.Agenda.Digital.Controller;
 
-import java.util.ArrayList;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -38,11 +36,19 @@ public class SubscriptionController {
 	
 	@PostMapping("/aprobe")
 	public void aprobeSubscription(@RequestBody SubscriptionModel subscription) {
+		MatterModel matterDB = matterService.getMatter(subscription.getMatter().getId());
+		StudentModel studentDB = studentService.getStudentMattterRegister(subscription.getStudent().getId());
+		subscription.setMatter(matterDB);
+		subscription.setStudent(studentDB);
 		subscriptionService.aprobeSubscription(subscription);
 	}
 	
 	@PostMapping("/denied")
 	public void deniedSubscription(@RequestBody SubscriptionModel subscription) {
+		MatterModel matterDB = matterService.getMatter(subscription.getMatter().getId());
+		StudentModel studentDB = studentService.getStudentMattterRegister(subscription.getStudent().getId());
+		subscription.setMatter(matterDB);
+		subscription.setStudent(studentDB);
 		subscriptionService.deniedSubscription(subscription);
 	}
 	
