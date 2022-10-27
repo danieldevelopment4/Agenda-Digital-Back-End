@@ -14,11 +14,9 @@ import D.D.Agenda.Digital.Models.SubmitModel;
 import D.D.Agenda.Digital.Models.SubscriptionModel;
 import D.D.Agenda.Digital.Models.TeacherModel;
 import D.D.Agenda.Digital.Repository.ActivityRepository;
-import D.D.Agenda.Digital.Repository.MatterRepository;
 import D.D.Agenda.Digital.Repository.StudentRepository;
 import D.D.Agenda.Digital.Repository.SubmitRepository;
 import D.D.Agenda.Digital.Repository.SubscriptionRepository;
-import D.D.Agenda.Digital.Repository.TeacherRepository;
 
 @Service
 public class SubscriptionService {

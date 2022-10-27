@@ -1,5 +1,7 @@
 package D.D.Agenda.Digital.Services;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -35,5 +37,13 @@ public class TeacherService {
 		teacherRepository.deleteById(activity.getId());
 	}
 	
+	public TeacherModel show(TeacherModel teacher) {
+		Optional<TeacherModel> teacherDB = teacherRepository.findById(teacher.getId());
+		if(teacherDB.isPresent()) {
+			return teacherDB.get();
+		}else {
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "ID no encontrado");
+		}
+	}
 	
 }

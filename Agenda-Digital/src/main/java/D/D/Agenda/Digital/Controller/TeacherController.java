@@ -32,4 +32,9 @@ public class TeacherController {
 		teacherService.delete(teacher);
 	}
 	
+	@PostMapping("/show")
+	public TeacherModel show(@RequestBody TeacherModel teacher) {
+		return teacherService.show(teacher);
+	}
+	
 }
