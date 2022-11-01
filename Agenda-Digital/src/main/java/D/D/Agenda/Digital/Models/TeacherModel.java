@@ -19,9 +19,7 @@ public class TeacherModel {
 	private String name;
 	@Column(nullable = false)
 	private String lastName;
-	@Column(unique = true)
 	private String email;
-	@Column(unique = true)
 	private String cellphone;
 	
 	public TeacherModel() {
@@ -80,7 +78,7 @@ public class TeacherModel {
 		data += "\t\t\t\t\"name\":\""+name+"\",\n";
 		data += "\t\t\t\t\"lastName\":\""+lastName+"\",\n";
 		data += "\t\t\t\t\"email\":\""+email+"\",\n";
-		data += "\t\t\t\t\"cellphone\":"+cellphone+"\n";
+		data += "\t\t\t\t\"cellphone\":"+((cellphone!=null)?null:"\""+cellphone+"\"")+"\n";
 		data += "\t\t\t}";
 		return data;
 	}

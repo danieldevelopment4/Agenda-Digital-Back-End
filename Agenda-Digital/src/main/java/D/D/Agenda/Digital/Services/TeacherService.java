@@ -17,11 +17,7 @@ public class TeacherService {
 	TeacherRepository teacherRepository; 
 	
 	public void create(TeacherModel teacher) {
-		if(teacherRepository.findByCellphone(teacher.getCellphone())==null) {
-			teacherRepository.save(teacher);
-		}else {
-			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Docente ya registrado con dicho celular");
-		}
+		teacherRepository.save(teacher);
 	}
 	
 	public void update(TeacherModel teacher) {
