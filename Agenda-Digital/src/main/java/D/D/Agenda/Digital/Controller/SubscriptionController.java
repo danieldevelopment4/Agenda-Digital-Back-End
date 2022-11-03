@@ -34,6 +34,21 @@ public class SubscriptionController {
 		subscriptionService.subscribe(subscription);
 	}
 	
+	@PostMapping("/unsubscribe")
+	public void unsubscribe(@RequestBody SubscriptionModel subscription) {
+		MatterModel matterDB = matterService.getMatter(subscription.getMatter().getId());
+		StudentModel studentDB = studentService.getStudentMattterRegister(subscription.getStudent().getId());
+		subscription.setMatter(matterDB);
+		subscription.setStudent(studentDB);
+		subscriptionService.deniedSubscription(subscription);
+		if(subscriptionService.isTheLastOne(subscription)) {
+			subscriptionService.deleteUnprobedSubscription(matterDB);
+			matterService.delete(matterDB);
+		}else if(matterService.getMatter(matterDB.getId()).getStudent().getId()==studentDB.getId()){//el admin se va
+			matterService.setAdmin(matterDB, subscriptionService.getNewAdmin(matterDB));
+		}
+	}
+	
 	@PostMapping("/aprobe")
 	public void aprobeSubscription(@RequestBody SubscriptionModel subscription) {
 		MatterModel matterDB = matterService.getMatter(subscription.getMatter().getId());

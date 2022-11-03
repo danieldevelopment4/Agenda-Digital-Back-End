@@ -50,6 +50,36 @@ public class SubscriptionService {
 		}
 	}
 	
+	public boolean isTheLastOne(SubscriptionModel subscription) {
+		ArrayList<SubscriptionModel> subscriptionList = subscriptionRepository.findAllByMatter(subscription.getMatter());
+		int aprobedRequest = 0;
+		for (int i = 0; i < subscriptionList.size(); i++) {
+			if(!subscriptionList.get(i).isRequest()) {//conteo de solicitudes aprobadas
+				aprobedRequest++;
+			}
+		}
+		return aprobedRequest==0?true:false;
+	}
+	
+	public StudentModel getNewAdmin(MatterModel matter) {
+		ArrayList<SubscriptionModel> subscriptionList = subscriptionRepository.findAllByMatter(matter);
+		for (int i = 0; i < subscriptionList.size(); i++) {
+			if(!subscriptionList.get(i).isRequest()) {//solicitudes aprobadas
+				return subscriptionList.get(i).getStudent();
+			}
+		}
+		return null;
+	}
+	
+	public void deleteUnprobedSubscription(MatterModel matter) {
+		ArrayList<SubscriptionModel> subscriptionList = subscriptionRepository.findAllByMatter(matter);
+		for (int i = 0; i < subscriptionList.size(); i++) {
+			subscriptionList.get(i).setMatter(null);
+			subscriptionList.get(i).setStudent(null);
+			subscriptionRepository.delete(subscriptionList.get(i));
+		}
+	}
+	
 	public void aprobeSubscription(SubscriptionModel subscription) {
 		SubscriptionModel subscriptionDB = subscriptionRepository.findSubscriptionByMatterAndStudent(subscription.getMatter(), subscription.getStudent());
 		subscriptionDB.setRequest(false);

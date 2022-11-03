@@ -42,6 +42,7 @@ public class MatterService {
 	public void delete(MatterModel matter) {
 		MatterModel matterDB = matterRepository.findById(matter.getId()).get();
 		matterDB.setTeacher(null);
+		matterDB.setStudent(null);
 		matterRepository.delete(matterDB);
 		//Error eliminar de la tabla docente viola las clausulas de foreign key de la tabla materias...
 		//estamos en la tabla materias por lo que no se que tiene que verlos docentes
@@ -50,6 +51,11 @@ public class MatterService {
 	
 	public MatterModel getMatter(Long id) {
 		return matterRepository.findById(id).get();
+	}
+	
+	public void setAdmin(MatterModel matter, StudentModel student) {
+		matter.setStudent(student);
+		matterRepository.save(matter);
 	}
 	
 }

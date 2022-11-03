@@ -77,8 +77,8 @@ public class TeacherModel {
 		data += "\t\t\t\t\"id\":"+id+",\n";
 		data += "\t\t\t\t\"name\":\""+name+"\",\n";
 		data += "\t\t\t\t\"lastName\":\""+lastName+"\",\n";
-		data += "\t\t\t\t\"email\":\""+email+"\",\n";
-		data += "\t\t\t\t\"cellphone\":"+((cellphone!=null)?null:"\""+cellphone+"\"")+"\n";
+		data += "\t\t\t\t\"email\":"+((email==null)?null:"\""+email+"\"")+",\n";
+		data += "\t\t\t\t\"cellphone\":"+cellphone+"\n";
 		data += "\t\t\t}";
 		return data;
 	}
