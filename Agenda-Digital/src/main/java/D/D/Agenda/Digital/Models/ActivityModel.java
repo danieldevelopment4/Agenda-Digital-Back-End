@@ -1,5 +1,7 @@
 package D.D.Agenda.Digital.Models;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.persistence.CascadeType;
@@ -31,18 +33,17 @@ public class ActivityModel {
 	private MatterModel matter;
 	
 	private String noDaysRecordatories;
-	@CreationTimestamp
-	private Date submissionDate;
+	private String submissionDate;
 	private String term;
 	
-	public ActivityModel(Long id, String name, String description, int percent, String noDaysRecordatories,
-			String term) {
+	public ActivityModel(Long id, String name, String description, int percent, String noDaysRecordatories, String submissionDate, String term) throws ParseException {
 		super();
 		this.id = id;
 		this.name = name;
 		this.description = description;
 		this.percent = percent;
 		this.noDaysRecordatories = noDaysRecordatories;
+		this.submissionDate = submissionDate;
 		this.term = term;
 	}
 	
@@ -98,11 +99,11 @@ public class ActivityModel {
 		this.noDaysRecordatories = noDaysRecordatories;
 	}
 	
-	public Date getSubmissionDate() {
+	public String getSubmissionDate() {
 		return submissionDate;
 	}
 
-	public void setSubmissionDate(Date submissionDate) {
+	public void setSubmissionDate(String submissionDate) {
 		this.submissionDate = submissionDate;
 	}
 

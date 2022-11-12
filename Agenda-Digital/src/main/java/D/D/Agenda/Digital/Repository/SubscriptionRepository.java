@@ -21,6 +21,6 @@ public interface SubscriptionRepository extends CrudRepository<SubscriptionModel
 	
 	public abstract ArrayList<SubscriptionModel> findAllByMatter(MatterModel matter);
 	
-	public abstract SubscriptionModel findSubscriptionByMatterAndStudent(MatterModel matter, StudentModel studnet);
+	public abstract SubscriptionModel findByMatterAndStudent(MatterModel matter, StudentModel studnet);
 	
 }

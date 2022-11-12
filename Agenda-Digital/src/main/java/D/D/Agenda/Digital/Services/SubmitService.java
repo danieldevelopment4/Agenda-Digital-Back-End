@@ -23,7 +23,7 @@ public class SubmitService {
 	public void create(SubmitModel submit) {
 		ActivityModel activityDb = activityRepository.findById(submit.getActivity().getId()).get();
 		submit.setActivity(activityDb);
-		SubscriptionModel subscriptionDB = subscriptionRepository.findById(submit.getSubscription().getId()).get();
+		SubscriptionModel subscriptionDB = subscriptionRepository.findByMatterAndStudent(submit.getSubscription().getMatter(), submit.getSubscription().getStudent());
 		submit.setSubscription(subscriptionDB);
 		submitRepository.save(submit);
 	}

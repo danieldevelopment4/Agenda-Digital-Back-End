@@ -42,7 +42,7 @@ public class SubscriptionService {
 	}
 	
 	public SubscriptionModel subscribe(SubscriptionModel subscription) {
-		SubscriptionModel subscriptionDB = subscriptionRepository.findSubscriptionByMatterAndStudent(subscription.getMatter(), subscription.getStudent());
+		SubscriptionModel subscriptionDB = subscriptionRepository.findByMatterAndStudent(subscription.getMatter(), subscription.getStudent());
 		if(subscriptionDB==null) {
 			return subscriptionRepository.save(subscription);
 		}else {
@@ -81,13 +81,13 @@ public class SubscriptionService {
 	}
 	
 	public void aprobeSubscription(SubscriptionModel subscription) {
-		SubscriptionModel subscriptionDB = subscriptionRepository.findSubscriptionByMatterAndStudent(subscription.getMatter(), subscription.getStudent());
+		SubscriptionModel subscriptionDB = subscriptionRepository.findByMatterAndStudent(subscription.getMatter(), subscription.getStudent());
 		subscriptionDB.setRequest(false);
 		subscriptionRepository.save(subscriptionDB);
 	}
 	
 	public void deniedSubscription(SubscriptionModel subscription) {
-		SubscriptionModel subscriptionDB = subscriptionRepository.findSubscriptionByMatterAndStudent(subscription.getMatter(), subscription.getStudent());
+		SubscriptionModel subscriptionDB = subscriptionRepository.findByMatterAndStudent(subscription.getMatter(), subscription.getStudent());
 		subscriptionDB.setMatter(null);
 		subscriptionDB.setStudent(null);
 		
@@ -123,6 +123,7 @@ public class SubscriptionService {
 				}
 			}
 			activitiesList = activityRepository.findAllByMatter(matterDB);
+			activitiesList = sortActivities(activitiesList);
 			submitList = submitRepository.findAllSubmitBySubscription(subscriptionDB);
 			teacherDB = matterDB.getTeacher();
 			data+= subscriptionDB.toString(matterDB.toString(subscriptionDB.isRequest(), teacherDB, activitiesList, submitList, admin, aprobedStudentsList, waitingStudentsList));
@@ -132,5 +133,20 @@ public class SubscriptionService {
 		return data;
 	}
 	
+	private ArrayList<ActivityModel> sortActivities(ArrayList<ActivityModel> activitiesList){
+		ActivityModel aux;
+		for (int i = activitiesList.size() - 1; i > 0; i--) {
+			for (int j = 0; j < i; j++) {
+				if (Integer.parseInt(activitiesList.get(j).getTerm()) > Integer.parseInt(activitiesList.get(j+1).getTerm())) {
+					aux = activitiesList.get(j+1);
+					activitiesList.remove(j+1);
+					activitiesList.add(j+1, activitiesList.get(j));
+					activitiesList.remove(j);
+					activitiesList.add(j, aux);
+				}
+			}
+		}
+		return activitiesList;
+	}
 	
 }
