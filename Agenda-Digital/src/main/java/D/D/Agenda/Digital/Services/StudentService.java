@@ -1,7 +1,13 @@
 package D.D.Agenda.Digital.Services;
 
+import java.util.Properties;
+
+import javax.mail.internet.MimeMessage;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -61,6 +67,58 @@ public class StudentService{
 	
 	public StudentModel getStudentMattterRegister(Long id) {
 		return studentRepository.findById(id).get();
+	}
+	
+	public void recoverPassword(StudentModel student) {
+		StudentModel studentDB = studentRepository.findByEmail(student.getEmail());
+		if(studentDB!=null) {
+			String password = generateRandomPassword();
+			studentDB.setPassword(bCryptPasswordEncoder.encode(password));
+			studentRepository.save(studentDB);
+			sendMail(student.getEmail(), password);
+		}else {
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "el email ingresado ya se encuentra en uso");
+		}
+	}
+	
+	private String generateRandomPassword() {
+		String password = "";
+		int ascii = 0;
+		for (int i = 0; i < 16; i++) {
+			ascii = (int)(Math.random()*(126+1-33)+33);
+			password+= (char) ascii;
+		}
+		return password;
+	}
+	
+	private void sendMail(String email, String password){
+	    try {
+	    	JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
+		    mailSender.setHost("smtp.gmail.com");
+		    mailSender.setPort(587);
+		    mailSender.setUsername("danieldevelopment4@gmail.com");
+		    mailSender.setPassword("ryegmjliigwbhvyw");
+		    
+		    Properties mailProperties = new Properties();
+		    mailProperties.setProperty("mail.smtp.auth", "true");
+		    mailProperties.setProperty("mail.smtp.starttls.enable", "true");
+		    
+		    mailSender.setJavaMailProperties(mailProperties);
+		    
+		    MimeMessage message = mailSender.createMimeMessage();
+		    MimeMessageHelper helper = new MimeMessageHelper(message);
+		    
+		    helper.setFrom("danieldevelopment4@gmail.com", "D&D Support Team");
+		    helper.setTo(email);
+		    helper.setSubject("Password recovery");
+		    String content = "Se ha solicitado una recuperacion de contraseña. a partir de ahora y hasta que la cambies tu nueva contraseña sera>>> "+password+" <<<";
+		    helper.setText(content, true);
+			
+			mailSender.send(message);
+			System.out.println(content);
+		} catch (Exception e) {
+			System.err.println(e);
+		}
 	}
 	
 }

@@ -49,4 +49,9 @@ public class StudentController {
 		}
 	}
 	
+	@PostMapping("/recoverPassword")
+	public void recoverPassword(@RequestBody StudentModel student) {
+		studentService.recoverPassword(student);
+	}
+	
 }
