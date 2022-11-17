@@ -1,6 +1,7 @@
 package D.D.Agenda.Digital.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,9 +18,13 @@ public class TeacherController {
 	TeacherService teacherService;
 	
 	
-	@PostMapping("/create")
-	public void create(@RequestBody TeacherModel teacher) {
-		teacherService.create(teacher);
+	@PostMapping(value="/create", produces = MediaType.APPLICATION_JSON_VALUE)
+	public String create(@RequestBody TeacherModel teacher) {
+		return "{\n"
+			 + "\t\"teacher\": {\n"
+			 + "\t\t\"id\""+teacherService.create(teacher)+"\n"
+	 		 + "\t}\n"
+	 		 + "}";
 	}
 	
 	@PostMapping("/update")

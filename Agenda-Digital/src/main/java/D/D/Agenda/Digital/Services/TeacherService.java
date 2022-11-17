@@ -16,8 +16,8 @@ public class TeacherService {
 	@Autowired
 	TeacherRepository teacherRepository; 
 	
-	public void create(TeacherModel teacher) {
-		teacherRepository.save(teacher);
+	public Long create(TeacherModel teacher) {
+		return teacherRepository.save(teacher).getId();
 	}
 	
 	public void update(TeacherModel teacher) {

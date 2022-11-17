@@ -33,8 +33,12 @@ public class MatterService {
 	public void update(MatterModel matter) {
 		MatterModel matterDB = matterRepository.findById(matter.getId()).get();
 		matterDB.setName(matter.getName());
-		TeacherModel teacherDB = teacherRepository.findById(matter.getTeacher().getId()).get();
-		matterDB.setTeacher(teacherDB);
+		if(matter.getTeacher()!=null) {
+			TeacherModel teacherDB = teacherRepository.findById(matter.getTeacher().getId()).get();
+			matterDB.setTeacher(teacherDB);
+		}else {//se elimina el docente
+			
+		}
 		
 		matterRepository.save(matterDB);
 	}
