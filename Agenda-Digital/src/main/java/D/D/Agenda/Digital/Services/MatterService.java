@@ -37,7 +37,7 @@ public class MatterService {
 			TeacherModel teacherDB = teacherRepository.findById(matter.getTeacher().getId()).get();
 			matterDB.setTeacher(teacherDB);
 		}else {//se elimina el docente
-			
+			matterDB.setTeacher(null);
 		}
 		
 		matterRepository.save(matterDB);

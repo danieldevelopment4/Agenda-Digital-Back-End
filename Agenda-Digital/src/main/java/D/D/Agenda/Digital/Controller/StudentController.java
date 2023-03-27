@@ -54,4 +54,9 @@ public class StudentController {
 		studentService.recoverPassword(student);
 	}
 	
+	@PostMapping("/setPassword")
+	public void setPassword(@RequestBody StudentModel student) {
+		studentService.setPassword(student);
+	}
+	
 }

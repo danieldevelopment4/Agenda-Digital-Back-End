@@ -31,6 +31,7 @@ public class DownloadService {
 		downloadDB.setOperativeSystem("");
 		downloadRepository.save(downloadDB);
 		downloadDB.setOperativeSystem(download.getOperativeSystem());
+		downloadDB.setVersion(download.getVersion());
 		downloadDB.setUrl(download.getUrl());
 		downloadDB.setStatus(download.getStatus());
 		downloadRepository.save(downloadDB);
@@ -46,6 +47,11 @@ public class DownloadService {
 		ArrayList<DownloadModel> list = (ArrayList<DownloadModel>) downloadRepository.findAll();
 		list.sort((o1, o2) -> o1.getId().compareTo(o2.getId()));
 		return list; 
+	}
+	
+	public boolean lookForUpdate(DownloadModel download){
+		DownloadModel downloadDB = downloadRepository.findById(download.getId()).get();
+		return download.getVersion().equals(downloadDB.getVersion());
 	}
 
 	public String getStats() {

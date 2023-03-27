@@ -18,6 +18,7 @@ public class DownloadModel {
 	@Column(unique = true, nullable = false)
 	private String operativeSystem;
 	private int noDownloads;
+	private String version;
 	private String url;
 	@Column(nullable = false)
 	private String status;
@@ -26,11 +27,12 @@ public class DownloadModel {
 		super();
 	}
 
-	public DownloadModel(Long id, String operativeSystem, int noDownloads, String url, String status) {
+	public DownloadModel(Long id, String operativeSystem, int noDownloads, String version, String url, String status) {
 		super();
 		this.id = id;
 		this.operativeSystem = operativeSystem;
 		this.noDownloads = noDownloads;
+		this.version = version;
 		this.url = url;
 		this.status = status;
 	}
@@ -57,6 +59,14 @@ public class DownloadModel {
 
 	public void setNoDownloads(int noDownloads) {
 		this.noDownloads = noDownloads;
+	}
+
+	public String getVersion() {
+		return version;
+	}
+
+	public void setVersion(String version) {
+		this.version = version;
 	}
 
 	public String getUrl() {

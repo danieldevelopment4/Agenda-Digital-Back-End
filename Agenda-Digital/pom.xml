@@ -33,12 +33,7 @@
 			<artifactId>spring-boot-starter-security</artifactId>
 			<!-- Permite hacer uso de los componentes de seguridad con el fin de encriptar y validar credenciales -->
 		</dependency>
-		<dependency>
-			<groupId>org.json</groupId>
-			<artifactId>json</artifactId>
-			<version>20160810</version>
-			<!-- Permite la serializacion de los objetos a JSON -->
-		</dependency>
+		
 		<dependency>
 		    <groupId>org.springframework.boot</groupId>
 		    <artifactId>spring-boot-starter-mail</artifactId>

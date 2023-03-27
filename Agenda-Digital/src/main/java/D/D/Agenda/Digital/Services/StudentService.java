@@ -81,6 +81,16 @@ public class StudentService{
 		}
 	}
 	
+	public void setPassword(StudentModel student) {
+		StudentModel studentDB = studentRepository.findById(student.getId()).get();
+		if(studentDB!=null) {
+			studentDB.setPassword(bCryptPasswordEncoder.encode(student.getPassword()));
+			studentRepository.save(studentDB);
+		}else {
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "ERROR INTERNO");
+		}
+	}
+	
 	private String generateRandomPassword() {
 		String password = "";
 		int ascii = 0;
